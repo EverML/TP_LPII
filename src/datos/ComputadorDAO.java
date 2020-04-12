@@ -81,7 +81,7 @@ public class ComputadorDAO implements IDAO {
             Computador c = (Computador) obj;
             
             String SSQL = "UPDATE computadores "
-                    + "       SET nombre=?,descripcion=?,precio=?,tiene_garantia=?"
+                    + "       SET nombre=?,descripcion=?,precio=?,tiene_garantia=?,duracion_garantia=?"
                     + "     WHERE codigo=?;";
             
             ps = con.prepareStatement(SSQL);
