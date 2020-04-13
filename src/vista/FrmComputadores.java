@@ -101,12 +101,7 @@ public class FrmComputadores extends javax.swing.JFrame {
         txtGarantia =new javax.swing.JTextField();
         txtGarantia.setEnabled(false); //default
         chckbxTieneGarantia= new JCheckBox("Tiene Garantia ?");
-        chckbxTieneGarantia.addChangeListener(new ChangeListener() {
-        	public void stateChanged(ChangeEvent arg0) {
-        			txtGarantia.setEnabled(chckbxTieneGarantia.isSelected());
-        		
-        	}
-        });
+        onChangeChckbxTieneGarantia();
         
         btngrabar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
@@ -222,7 +217,7 @@ public class FrmComputadores extends javax.swing.JFrame {
         jPanel2Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {txtNombre, txtDescripcion, txtPrecio, txtGarantia});
         jPanel2.setLayout(jPanel2Layout);
 
-        jMenu3.setText("File");
+        jMenu3.setText("Archivo");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -271,6 +266,15 @@ public class FrmComputadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private void onChangeChckbxTieneGarantia() {
+		chckbxTieneGarantia.addChangeListener(new ChangeListener() {
+        	public void stateChanged(ChangeEvent arg0) {
+        			txtGarantia.setEnabled(chckbxTieneGarantia.isSelected());
+        		
+        	}
+        });
+	}
+
     private void btngrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngrabarActionPerformed
 
         Integer id = null;
@@ -282,15 +286,12 @@ public class FrmComputadores extends javax.swing.JFrame {
         String duracionGarantia = txtGarantia.getText();
         String mensaje = "";
         
-
         try {
             precio = new BigDecimal(precioStr);
-            
             if(lblId.getText() != null && !lblId.getText().isEmpty())
             {
              id = Integer.parseInt(lblId.getText());
-            }
-            
+            }     
             computador = new Computador(id, nombre, descripcion, precio, tieneGarantia,duracionGarantia);
             
             if(computador.getCodigo() != null)
@@ -380,11 +381,6 @@ public class FrmComputadores extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -401,7 +397,6 @@ public class FrmComputadores extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmComputadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
